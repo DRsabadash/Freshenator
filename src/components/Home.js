@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
-import {HELP} from '../constants/routes';
+import { withRouter } from 'react-router-dom';
+import logo from '../assets/images/FreshworksLogoAlpha.png';
+import logo from '../assets/images/FreshworksLogoAlpha.png'
+
 
 class Home extends Component {
   render() {
     console.log(this.props.history)
     return (
-      <div>      <button onClick={() => this.props.history.push(HELP)}/>
-      Welcome to the FreshWorks React Boilerplate! - Home Page</div>
+      <div>
+        <img src={logo} className="Logo"></img>
+      </div>
     );
   }
 }

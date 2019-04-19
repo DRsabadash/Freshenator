@@ -10,25 +10,28 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    transparent: true,
+    frame: false,
+    resizable: false,
     webPreferences: {
       nodeIntegration: true
     }
   })
 
+  //Remove menu bar
+  mainWindow.setMenu(null)
+
   // and load the index.html of the app.
   if (process.env.NODE_ENV === 'production') {
-      console.log("PRODUCTION" + process.env.NODE_ENV)
+    console.log("PRODUCTION" + process.env.NODE_ENV)
     mainWindow.loadFile('./build/index.html')
   } else {
-      mainWindow.loadURL('http://localhost:3000')
-      console.log("DEV" + process.env.NODE_ENV)
-
+    mainWindow.loadURL('http://localhost:3000')
+    console.log("DEV" + process.env.NODE_ENV)
   }
-  
-  mainWindow.webContents.openDevTools();
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

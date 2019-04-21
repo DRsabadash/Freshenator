@@ -5,6 +5,8 @@
   "homepage": "./",
   "main": "./main.js",
   "dependencies": {
+    "@craco/craco": "^4.1.0",
+    "@material-ui/core": "^3.9.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.2",
@@ -15,13 +17,13 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "craco start",
     "electron": "electron .",
     "electron-dev": "concurrently --kill-others \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000/ && electron .\"",
-    "electron-build": "cross-env NODE_ENV=production concurrently \"npm run build && electron .\"",
+    "electron-build": "cross-env NODE_ENV=production concurrently \"npm run build && electron . babel-require .\"",
     "electron-prod": "cross-env NODE_ENV=production electron .",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

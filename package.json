@@ -3,10 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
-  "main": "./main.js",
+  "main": "./public/electron.js",
+  "build": {
+    "asar": false,
+    "appId": "your.id",
+    "productName": "Freshenator",
+    "directories": {
+      "buildResources": "./build",
+      "output": "dist",
+      "app": "./"
+    }
+  },
   "dependencies": {
     "@craco/craco": "^4.1.0",
     "@material-ui/core": "^3.9.3",
+    "electron-packager": "^13.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.2",
@@ -20,12 +31,14 @@
   "scripts": {
     "start": "craco start",
     "electron": "electron .",
-    "electron-dev": "concurrently --kill-others \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000/ && electron .\"",
+    "electron-dev": "cross-env NODE_ENV=development concurrently --kill-others  \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000/ && electron .\"",
     "electron-build": "cross-env NODE_ENV=production concurrently \"npm run build && electron .\"",
     "electron-prod": "cross-env NODE_ENV=production electron .",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,8 +53,9 @@
     "concurrently": "^4.1.0",
     "cross-env": "^5.2.0",
     "electron": "^4.1.4",
-    "electron-webpack": "^2.6.2",
+    "electron-builder": "^20.39.0",
     "node-sass": "^4.11.0",
+    "typescript": "^3.4.4",
     "wait-on": "^3.2.0"
   }
 }

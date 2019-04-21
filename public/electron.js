@@ -1,3 +1,4 @@
+
 // Modules to control application life and create native browser window
  const { ipcMain } = require('electron')
  const {app, BrowserWindow} = require('electron')
@@ -36,15 +37,15 @@ function createWindow () {
 
   // and load the index.html of the app.
   if (process.env.NODE_ENV === 'production') {
-    console.log("PRODUCTION" + process.env.NODE_ENV)
     mainWindow.loadFile('./build/index.html')
-  } else {
+  } else if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:3000')
-    console.log("DEV" + process.env.NODE_ENV)
+  } else {
+    mainWindow.loadFile('./build/index.html')
   }
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

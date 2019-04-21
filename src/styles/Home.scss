@@ -1,0 +1,186 @@
+.Logo {
+  display: inline-block;
+  position: absolute;
+  top: -10px;
+  left: -5px;
+  height: 5em;
+  width: 5em;
+  -webkit-app-region: drag;
+
+}
+
+.Dialog {
+  position: absolute;
+  display: inline-block;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 400px;
+  width: 600px;
+}
+
+.TextArea {
+  position: absolute;
+  display: inline-block;
+  border-radius: 5px;
+  border: 10px solid rgba(88, 88, 88, 0.3);
+  border-style: outset;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  color: white;
+  outline: none;
+  resize: none;
+  white-space: pre-wrap;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(26, 26, 26, 0.8);
+}
+.ScrollBarWrap {
+  position: absolute;
+  display: inline-block;
+  width: 60%;
+  height: 40%;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.CoverBar {
+  position: absolute;
+  background-color: #414141;
+  height: 100%;  
+  top: 0;
+  right: 0;
+  width: 12px;
+  -webkit-transition: all .7s;
+}
+
+.ScrollBarWrap:hover .CoverBar {
+  opacity: 0;
+  -webkit-transition: all .7s;
+
+}
+
+.DirectoryPathBackground {
+  position: absolute;
+  width: 83%;
+  height: 2em;
+  bottom: 20%;
+  left: 50%;
+  outline: none;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(56, 56, 56, 0.65);
+  background-color: rgba(26, 26, 26, 0.8);
+}
+
+.DirectoryPathInput {
+  position: absolute;
+  display: inline-block;
+  padding: 0px 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:none;
+  font-size: 1em;
+  line-height: 2em;
+  text-align: top 50%;
+  caret-color: #5fcc63;
+  width: 80%;
+  height: 2em;
+  bottom: 20%;
+  left: 50%;
+  border: 1px solid rgba(56, 56, 56, 0.65);
+  outline: none;
+  transform: translate(-50%, -50%);
+  background-color: rgba(26, 26, 26, 0.65);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: -webkit-repeating-linear-gradient(left, 
+  #5fcc63, 
+  #ff5d72, 
+  #fe8711, 
+  #ecd644, 
+  #5fcc63,
+  #ff5d72,
+  #fe8711,
+  #ecd644,
+  #5fcc63,
+  );
+  &:empty:before{
+    content: attr(placeholder)
+  }
+}
+
+.List {
+  list-style: none;
+}
+.List0 {
+  @extend .List;
+  color: #5fcc63;
+}
+.List1 {
+  @extend .List;
+  color: #9dce59;
+}
+.List2 {
+  @extend .List;
+  color: #fad640;
+}
+.List3 {
+  @extend .List;
+  color: #ecd644;
+}
+.List4 {
+  @extend .List;
+  color: #fdc530;
+}
+.List5 {
+  @extend .List;
+  color: #fd9808;
+}
+.List6 {
+  @extend .List;
+  color: #fe8711;
+}
+.List7 {
+  @extend .List;
+  color: #fd7045;
+}
+.List8 {
+  @extend .List;
+  color: #fb675d;
+}
+.List9 {
+  @extend .List;
+  color: #ff5d72;
+}
+
+
+
+.TextArea::-webkit-scrollbar {
+  border-radius: 60px;
+	width: 12px;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.TextArea::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+	background-color: #FFF;
+  background-image: -webkit-repeating-linear-gradient(top, 
+  #5fcc63, 
+  #9dce59,
+  #000000,
+  #ff5d72, 
+  #fb675d, 
+  #fd7045, 
+  #fe8711, 
+  #fd9808, 
+  #fdc530, 
+  #ecd644, 
+  #fad640, 
+  #9dce59, 
+  #5fcc63);
+}

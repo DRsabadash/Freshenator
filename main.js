@@ -1,34 +1,50 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+ const { ipcMain } = require('electron')
+ const {app, BrowserWindow} = require('electron')
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+
+ipcMain.on('asynchronous-message', (event, arg) => {
+  console.log(arg) // prints "ping"
+  event.sender.send('asynchronous-reply', 'pong')
+})
+
+ipcMain.on('synchronous-message', (event, arg) => {
+  console.log(arg) // prints "ping"
+  event.returnValue = 'pong'
+})
+
 
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    transparent: true,
+    frame: false,
+    resizable: false,
     webPreferences: {
       nodeIntegration: true
     }
   })
 
+  //Remove menu bar
+  mainWindow.setMenu(null)
+
   // and load the index.html of the app.
   if (process.env.NODE_ENV === 'production') {
-      console.log("PRODUCTION" + process.env.NODE_ENV)
+    console.log("PRODUCTION" + process.env.NODE_ENV)
     mainWindow.loadFile('./build/index.html')
   } else {
-      mainWindow.loadURL('http://localhost:3000')
-      console.log("DEV" + process.env.NODE_ENV)
-
+    mainWindow.loadURL('http://localhost:3000')
+    console.log("DEV" + process.env.NODE_ENV)
   }
-  
-  mainWindow.webContents.openDevTools();
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

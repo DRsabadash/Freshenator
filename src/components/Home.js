@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
+import { DASHBOARD } from '../constants/routes';
 import logo from '../assets/images/FreshworksLogoAlpha.png';
 import dialog from '../assets/images/DialogBox.png';
 import Electron from 'electron';
@@ -32,6 +33,13 @@ class Home extends Component {
 
   textAreaRef= null
 
+  componentDidMount() {
+    //set ipcRenderer listeners here
+    Electron.ipcRenderer.on("gitReturn", (event, arg) => {
+      // set state to this.setState({ textAreaContent: [...this.state.textAreaContent].concat({name: this.state.inputContent}), disabled: true })
+    })
+  }
+
   onInputHandler = (event) => {
     this.setState({ inputContent: event.target.innerHTML }) 
   }
@@ -40,13 +48,14 @@ class Home extends Component {
     if (this.state.inputContent !== undefined){
       await this.setState({ textAreaContent: [...this.state.textAreaContent].concat({name: this.state.inputContent}), disabled: true })
       this.textAreaRef.scrollTop = this.textAreaRef.scrollHeight + 100
-      this.setState({ textAreaContent: [...this.state.textAreaContent].concat({name: Electron.ipcRenderer.sendSync('synchronous-message', 'ping')})})
-
+      Electron.ipcRenderer.sendSync('synchronous-message', 'ping')
+      this.props.history.push(DASHBOARD)
     }
   }
-
   
   render() {
+
+
     const { classes } = this.props;
     return (
       <div>

@@ -36,8 +36,8 @@ but the recommended way is with npm run electron-dev
 
 `npm run electron`
 - *ceates an electron window*
-- *tries to connect to http://localhost:3000 by default*
-- *will not load anything if client server is not already running*
+- *tries to load './build/index.html by default*
+- *will not load anything if build has never been called*
 
 `npm run build`
 - *builds application into a single folder with condensed sourcecode*
@@ -59,9 +59,16 @@ but the recommended way is with npm run electron-dev
 
 - *App is accessed from localhost:3000*
 - *used for electron development mode*
-- *browser window auto open is disabled, but can still be accessed through a browser manually*
+- *browser window auto open is disabled, but can still be accessed through a browser manually unless craco.config.js is overriding webpack*
+- *using craco.config breaks browser development for some reason*
 - *Hot reloading is enabled*
 - *closing the electron window automatically shuts down the client server*
+
+`npm run electron-dev-tools`
+
+- *does all of the above*
+- *makes default window size a little larger, installs Redux-devtools, auto opens Developer tools, and composes the store with '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'*
+
 
 ##### Electron build:
 
@@ -79,6 +86,24 @@ but the recommended way is with npm run electron-dev
 - *assumes code has been pre-built*
 - *Hot reloading is DISABLED*
 - *Used to run a container pointed at the production file destination without rebuilding the app from source*
+
+---
+
+### PRODUCTION
+
+#### App packaging:
+
+`npm run pack`
+
+- *bundles all application source into dist folder*
+- *creates executable for current host OS*
+- *package.json build:{} provides packaging args, asar controls dist source archiving*
+
+`npm run dist`
+
+- *does all of the above*
+- *also provides an installer that moves app source to default host program directory*
+- *installer will also create a desktop shortcut for the app*
 
 ---
 

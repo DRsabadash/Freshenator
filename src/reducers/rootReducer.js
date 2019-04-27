@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import featureReducer from '../reducers/FeatureReducer';
+import featureReducer from './FeatureReducer';
 import * as reducerTypes from '../constants/reducerTypes';
 
 const createReducer = (reducer, name) => (state, action) => {
@@ -12,7 +12,7 @@ const createReducer = (reducer, name) => (state, action) => {
 const rootReducer = combineReducers({
   //Feature reducer
   [reducerTypes.STORE_FEATURES]: createReducer(featureReducer, reducerTypes.STORE_FEATURES),
-  
+
 });
 
 export default rootReducer;

@@ -2,9 +2,16 @@
 
 #### About:
 
-This is the a boilerplate for creating electron applications, leveraging react, redux, and react-router.
+This is a boilerplate-bootstrapper for creating electron applications, leveraging react, redux, and react-router.
 Everything is pre-configured to load off of a client server with live updating in development mode, or off of a static HTML file in production mode.
-This allows for easy distribution of a built application with a minified source, and optimized performance with no overhead of running a client server.
+
+#### Use case:
+
+To rapidly develop generic react/redux apps with a small amount of business logic/customization. An attempt to condense
+the first ~2 weeks of project development into a 10 minute action, by programatically replicating repetitive tasks and
+project setup.
+
+__this is the development repo for the project, the final production build will be distributed by installer__
 
 #### Main Stack:
 
@@ -18,9 +25,6 @@ bootstrapped with [Create React App](https://github.com/facebook/create-react-ap
 #### Developed By:
 
 David Sabadash
-
-#### React boilerplate code by:
-Brendan Walker & Jiawei Wu
 
 ---
 ### DEVELOPMENT
@@ -78,49 +82,5 @@ but the recommended way is with npm run electron-dev
 
 ---
 
-## GUIDELINES
-*Taken verbatim from freshworks-react boilerplate readme*
-
-#### Files/Components:
-
-- Consistent file naming scheme
-i.e. Home.js -> HomeSidebar.js -> HomeFooter.js
-
-- Containers (i.e. Home.js) contain logic and state (connect to redux) and pass props to sub components (i.e. HomeSidebar.js)
-
-- Put reusable components in one folder in components folder: components -> common -> Countdown.js, GoogleMap.js, etc.
-
-- Component classes are named the same as the files in which they are contained
-i.e. Nav.js -> ```class Nav extends Component {...}```
-
-- Organize imports in all files - modules at top, components below modules
-- Mixed/named imports first, default imports second
-- @/someAppRootLevelDir/someFile format
-- ./SomeFile for local files
-
-i.e. (in order) 
-
-~~~
-import React, { Component } from 'react';
-import { HashRouter } from 'react-router-dom';
-import thunk from 'redux-thunk';
-import * as Routes from '@/constants/routes';
-import Sidebar from './Sidebar';
-etc
-~~~
-
-- Lifecycle methods right underneath constructor
-
-i.e. (in order) 
-
-~~~
-constructor() {...}
-componentDidMount() {...}
-handleSubmit() {...}
-etc
-~~~
-
----
-
-## Planned features
-- Integrating Jest unit testing
+## See the boilerplate for this app at:
+[electron-React boilerplate](https://github.com/DRsabadash/electron-react-boilerplate).

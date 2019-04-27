@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import Dock from './Dock';
+import { addFeature, removeFeature } from '../actionCreators/FeatureActionCreators';
+import { STORE_FEATURES } from '../constants/reducerTypes';
 import loginSelected from '../assets/images/LoginSelected.png';
 import loginUnselected from '../assets/images/LoginUnselected.png';
 import navbarSelected from '../assets/images/NavbarSelected.png';
@@ -71,8 +74,13 @@ class Dashboard extends Component {
     
   }
 
-  onClickHandler = (buttonId) => {
-this.setState({[buttonId]: !this.state[buttonId]})
+  onClickHandler = async (buttonId) => {
+    await this.setState({[buttonId]: !this.state[buttonId]})
+    if (this.state[buttonId]){
+      this.props.addFeature({feature: buttonId, settings: []})
+    } else {
+      this.props.removeFeature(buttonId)
+    }
   }
 
   render() {
@@ -250,7 +258,17 @@ this.setState({[buttonId]: !this.state[buttonId]})
   }
 }
 
+const mapStateToProps = (state) => ({
+  storeFeatures : state[STORE_FEATURES]
+})
+
+const mapDispatchToProps = {
+  addFeature,
+  removeFeature,
+}
+
 export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
   withStyles(styles),
   withRouter,
 )(Dashboard);

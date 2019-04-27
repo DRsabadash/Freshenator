@@ -1,11 +1,14 @@
 
 import React, { Component } from 'react';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { Drawer, List, IconButton, ListItem, ListItemIcon, ListItemText, Divider, Typography } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeftRounded';
 import ChevronRightIcon from '@material-ui/icons/ChevronRightRounded';
+import { editFeature } from '../actionCreators/FeatureActionCreators';
+import { STORE_FEATURES } from '../constants/reducerTypes';
 
 const drawerWidth = 400;
 
@@ -166,18 +169,18 @@ class Dock extends Component {
         >
           <div className={classes.drawerHeader}>
             {this.state.open === 'close' 
-            ? <IconButton onClick={() => this.handleDrawerToggle('open')} className={classes.expanderButton}>
+            ?<IconButton onClick={() => this.handleDrawerToggle('open')} className={classes.expanderButton}>
               <ChevronRightIcon fontSize="large" style={{position: 'absolute', float: 'center'}}/>
             </IconButton>
-            : this.state.open === 'open' 
-            ? <div><IconButton onClick={() => this.handleDrawerToggle('close')} className={classes.expanderButton}>
+            :this.state.open === 'open' 
+            ?<div><IconButton onClick={() => this.handleDrawerToggle('close')} className={classes.expanderButton}>
               <ChevronLeftIcon fontSize="large" style={{position: 'absolute', float: 'center'}}/>
               </IconButton>
               <IconButton onClick={() => this.handleDrawerToggle('openest')} className={classes.expanderButton}>
               <ChevronRightIcon fontSize="large" style={{position: 'absolute', float: 'center'}}/>
               </IconButton>
             </div> 
-            : <IconButton onClick={() => this.handleDrawerToggle('open')} className={classes.expanderButton}>
+            :<IconButton onClick={() => this.handleDrawerToggle('open')} className={classes.expanderButton}>
               <ChevronLeftIcon fontSize="large" style={{position: 'absolute', float: 'center'}}/>
             </IconButton>}
           </div>
@@ -239,6 +242,15 @@ class Dock extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  storeFeatures : state[STORE_FEATURES]
+})
+
+const mapDispatchToProps = {
+  editFeature
+}
+
 export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
   withStyles(styles)
 )(Dock);

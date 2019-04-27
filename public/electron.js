@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
  const { ipcMain } = require('electron')
  const {app, BrowserWindow} = require('electron')
+ const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -39,13 +40,17 @@ function createWindow () {
     mainWindow.loadFile('./build/index.html')
   } else if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:3000')
+  } else if (process.env.NODE_ENV === 'developmentWithTools') {
+    mainWindow.loadURL('http://localhost:3000')
   } else {
     mainWindow.loadFile('./build/index.html')
   }
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
-
+  if ( process.env.NODE_ENV === 'developmentWithTools') {
+    mainWindow.setSize(1200, 900)
+    mainWindow.webContents.openDevTools()
+  }
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
@@ -54,6 +59,14 @@ function createWindow () {
     mainWindow = null
   })
 }
+
+app.on('ready', () => {
+  if (process.env.NODE_ENV === 'developmentWithTools') {
+    installExtension(REDUX_DEVTOOLS)
+      .then((name) => console.log(`Added Extension:  ${name}`))
+      .catch((err) => console.log('An error occurred: ', err));
+  }
+})
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

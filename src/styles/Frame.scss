@@ -1,7 +1,24 @@
 .Frame {
+  position: relative;
   top: 0%;
-  height: 1.7em;
-  background-color: #252525;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 20px;
+  height: 30px;
   -webkit-app-region: drag;
+  box-shadow: -50px 25px 30px -10px #aaaaaa;
+  z-index: 2;
+
+}
+
+.CloseButton {
+  position: absolute;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  border-radius: 30px;
+  width: 58px;
+  height: 58px;
+  right: 0%;
+  box-shadow: -12px 15px 30px -10px #aaaaaa;
 
 }

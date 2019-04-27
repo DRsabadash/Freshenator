@@ -1,2 +1,2 @@
-export const FRAME ="/" ;
-export const HELP = "/help"
+export const HOME ="/" ;
+export const DASHBOARD = "/dashboard"

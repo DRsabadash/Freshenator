@@ -31,10 +31,10 @@
 }
 
 .TextFillActive {
-  background-color: #f8f8f8;
+  background-color: #252525;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: -webkit-linear-gradient(bottom, 
+  background-image: -webkit-linear-gradient(left, 
   #ff5d72,
   #fe8711,
   #ecd644,
@@ -42,16 +42,19 @@
   );
   white-space: nowrap;
   text-overflow:none;
-  font-size: 25px;
+  font-size: 14px;
+  font-weight: bolder;
   line-height: 25px;
   text-align: center;
 }
 .TextFillUnactive {
-  background-color: #f8f8f8;
+  background-color: #252525;
   color: grey;
   white-space: nowrap;
   text-overflow:none;
-  font-size: 25px;
+  font-weight: bolder;
+
+  font-size: 14px;
   line-height: 25px;
   text-align: top 50%;
 }

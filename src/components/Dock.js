@@ -9,6 +9,13 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeftRounded';
 import ChevronRightIcon from '@material-ui/icons/ChevronRightRounded';
 import { editFeature } from '../actionCreators/FeatureActionCreators';
 import { STORE_FEATURES } from '../constants/reducerTypes';
+import loginIcon from '../assets/images/LoginIcon.png';
+import accountDetailsIcon from '../assets/images/AccountDetailsIcon.png';
+import navbarIcon from '../assets/images/NavbarIcon.png';
+import homePageIcon from '../assets/images/HomePageIcon.png';
+import adminPanelIcon from '../assets/images/AdminPanelIcon.png';
+import dashboardIcon from '../assets/images/DashboardIcon.png';
+
 
 const drawerWidth = 400;
 
@@ -61,6 +68,7 @@ const styles = theme => ({
   },
   drawerOpenFull: {
     borderTopLeftRadius: '10px',
+    overflowX: 'hidden',
     backgroundColor: '#252525',
     boxShadow: "10px 40px 30px 5px #aaaaaa",
     width: 800,
@@ -71,6 +79,7 @@ const styles = theme => ({
   },
   drawerOpen: {
     borderTopLeftRadius: '10px',
+    overflow: 'hidden',
     backgroundColor: '#252525',
     boxShadow: "10px 40px 30px 5px #aaaaaa",
     width: drawerWidth,
@@ -81,6 +90,7 @@ const styles = theme => ({
   },
   drawerClose: {
     borderTopLeftRadius: '10px',
+    overflow: 'hidden',
     backgroundColor: '#252525',
     boxShadow: "10px 40px 30px 5px #aaaaaa",
     transition: theme.transitions.create('width', {
@@ -88,13 +98,46 @@ const styles = theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: 'hidden',
-    width: "50px",
+    width: "60px",
     [theme.breakpoints.up('sm')]: {
-      width: "50px",
+      width: "60px",
     },
   },
   drawerPaper: {
     width: drawerWidth,
+    display: 'inline-grid',
+    'grid-template-columns': '60px 100px 100px',
+    paddingTop: '20px',
+    paddingBottom: '20px',
+    height: "90px",
+    alignItems: 'center',
+    transition: theme.transitions.create('height', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    
+  },
+  drawerPaperFull: {
+    width: drawerWidth,
+    display: 'inline-grid',
+    'grid-template-columns': '60px 100px 100px',
+    paddingTop: '20px',
+    paddingBottom: '40px',
+    height: "200px",
+    alignItems: 'center',
+    transition: theme.transitions.create('height', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    
+  },
+  drawerIcon: {
+    position: 'relative',
+    backgroundSize: 'cover',
+    height: '50px',
+    marginLeft: '5px',
+    marginRight: '5px',
+    width: '50px', 
   },
   drawerHeader: {
     display: 'flex',
@@ -139,15 +182,48 @@ class Dock extends Component {
   }
 
   handleDrawerToggle = (openLevel) => {
-    console.log(this.state.open)
-    console.log(this.state.open === openLevel)
     this.setState({ open: openLevel });
     
     // TODO: On Toggle, if open set overlay DIV with no click through, no scroll to remaining window width/height with .6 opacity, also add a full drawer option
   };
 
+  getIcon = (featureName) => {
+    switch (featureName) {
+      case 'login':
+        console.log('yep')
+        return loginIcon;
+
+      case 'accountDetails':
+        return accountDetailsIcon;
+
+      case 'navbar':
+        return navbarIcon;
+
+      case 'homePage':
+        return homePageIcon;
+
+      case 'adminPanel':
+        return adminPanelIcon;
+
+      case 'dashboard':
+        return dashboardIcon;
+
+      default:
+        return ''
+    }
+  }
+  
+
   render() {
     const { classes } = this.props;
+    const sortOrder = ['login', 'accountDetails', 'navbar', 'homePage', 'adminPanel', 'dashboard'];
+    let activeFeatures = []
+
+    sortOrder.map(element => {
+      activeFeatures.push(this.props.storeFeatures.data.find(item => item.feature === element))
+    })
+
+    activeFeatures = activeFeatures.filter(element => element != undefined)
 
     return (
       <div style={{display: "flex"}}>
@@ -184,58 +260,42 @@ class Dock extends Component {
               <ChevronLeftIcon fontSize="large" style={{position: 'absolute', float: 'center'}}/>
             </IconButton>}
           </div>
-          <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
-            elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in
-            hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id interdum
-            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing.
-            Amet nisl suscipit adipiscing bibendum est ultricies integer quis. Cursus euismod quis
-            viverra nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo.
-            Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus
-            at augue. At augue eget arcu dictum varius duis at consectetur lorem. Velit sed
-            ullamcorper morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
-          </Typography>
-
-          <Typography paragraph>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-            facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-            tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-            consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus
-            sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in.
-            In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-            et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique
-            sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo
-            viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
-            ultrices sagittis orci a.
-          </Typography>
-
-          <Typography paragraph>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-            facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-            tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-            consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus
-            sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in.
-            In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-            et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique
-            sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo
-            viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
-            ultrices sagittis orci a.
-          </Typography>
-
-          <Typography paragraph>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-            facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-            tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-            consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus
-            sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in.
-            In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-            et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique
-            sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo
-            viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
-            ultrices sagittis orci a.
-          </Typography>
           <Divider className={classes.divider}/>
+          <Divider className={classes.divider} style={{marginTop: '3px'}}/>
+
+          {
+            activeFeatures.map((element, index) => (
+            console.log(this.getIcon(element.feature)),
+            console.log(loginIcon),
+            <div style={{}}>
+              <div className={
+                classNames(classes.drawerPaper, {
+                  [classes.drawerPaper]: this.state.open === 'close',
+                  [classes.drawerPaper]: this.state.open === 'open',
+                  [classes.drawerPaperFull]: this.state.open === 'openest'
+                })}
+              >
+                {/* gridcell 1 */}
+                <div className={classes.drawerIcon} style={{backgroundImage: `url(${this.getIcon(element.feature)})`}}/>
+                {/* gridcell 2 */}
+                <div style={{display: 'inline-flex', overflow: 'hidden' }}>
+                  something
+                </div>
+                {/* gridcell 3 */}
+                <div style={{display: 'inline-flex', overflow: 'hidden' }}>
+               
+                </div>
+              </div>
+              <Divider className={classes.divider}/>
+              { 
+                index % 2 === 1
+                ? <Divider className={classes.divider} style={{marginTop: '3px'}}/>
+                : <div/> 
+              }
+            </div>
+            ))
+          }
+
         </Drawer>
       </div>
     );

@@ -29,7 +29,7 @@ const styles = ({
     height: '40px',
     transform: 'translate(-50%, 0%)',
     bottom:' 25px',
-    background: 'linear-gradient(to top,  #ff5d72, #fb675d, #fd7045, #fe8711, #fd9808, #fdc530, #ecd644, #fad640, #9dce59, #5fcc63)',
+    background: 'linear-gradient(left,  #ff5d72, #fb675d, #fd7045, #fe8711, #fd9808, #fdc530, #ecd644, #fad640, #9dce59, #5fcc63)',
     filter: 'blur(2px)',
     borderRadius: '5px',
   },
@@ -61,10 +61,10 @@ const styles = ({
     transform: 'translate(-50%, 0%)',
     bottom: '27px',
   },
-  asd: {
-    backgroundColor: '#f8f8f8',
+  buttonBackground: {
+    backgroundColor: '#252525',
     '&:hover':{
-      backgroundColor: '#f8f8f8',
+      backgroundColor: '#252525',
     }
   }
 });
@@ -101,7 +101,7 @@ class Dashboard extends Component {
               })}
             />
             <Button variant='contained' className={
-              classNames(classes.asd, {
+              classNames(classes.buttonBackground, {
                 [classes.buttonUnactive] : !this.state.login, 
                 [classes.buttonActive] : this.state.login
               })} onClick={() => this.onClickHandler("login")}
@@ -112,7 +112,7 @@ class Dashboard extends Component {
                   'TextFillActive' : this.state.login
                 })}
               >
-              Click!
+              Login
               </div>
             </Button>
           </div>
@@ -128,7 +128,7 @@ class Dashboard extends Component {
               })}
             />
             <Button variant='contained' className={
-              classNames(classes.asd, {
+              classNames(classes.buttonBackground, {
                 [classes.buttonUnactive] : !this.state.accountDetails, 
                 [classes.buttonActive] : this.state.accountDetails
               })} onClick={() => this.onClickHandler("accountDetails")}
@@ -139,7 +139,7 @@ class Dashboard extends Component {
                   'TextFillActive' : this.state.accountDetails
                 })}
               >
-              Click!
+              Account
               </div>
             </Button>
           </div>
@@ -155,7 +155,7 @@ class Dashboard extends Component {
               })}
             />
             <Button variant='contained' className={
-              classNames(classes.asd, {
+              classNames(classes.buttonBackground, {
                 [classes.buttonUnactive] : !this.state.navbar, 
                 [classes.buttonActive] : this.state.navbar
               })} onClick={() => this.onClickHandler("navbar")}
@@ -166,7 +166,7 @@ class Dashboard extends Component {
                   'TextFillActive' : this.state.navbar
                 })}
               >
-              Click!
+              Navbar
               </div>
             </Button>
           </div>
@@ -182,7 +182,7 @@ class Dashboard extends Component {
               })}
             />
             <Button variant='contained' className={
-              classNames(classes.asd, {
+              classNames(classes.buttonBackground, {
                 [classes.buttonUnactive] : !this.state.homePage, 
                 [classes.buttonActive] : this.state.homePage
               })} onClick={() => this.onClickHandler("homePage")}
@@ -193,7 +193,7 @@ class Dashboard extends Component {
                   'TextFillActive' : this.state.homePage
                 })}
               >
-              Click!
+              Homepage
               </div>
             </Button>
           </div>
@@ -209,7 +209,7 @@ class Dashboard extends Component {
               })}
             />
             <Button variant='contained' className={
-              classNames(classes.asd, {
+              classNames(classes.buttonBackground, {
                 [classes.buttonUnactive] : !this.state.adminPanel, 
                 [classes.buttonActive] : this.state.adminPanel
               })} onClick={() => this.onClickHandler("adminPanel")}
@@ -220,7 +220,7 @@ class Dashboard extends Component {
                   'TextFillActive' : this.state.adminPanel
                 })}
               >
-              Click!
+              Admin Panel
               </div>
             </Button>
           </div>
@@ -236,7 +236,7 @@ class Dashboard extends Component {
               })}
             />
             <Button variant='contained' className={
-              classNames(classes.asd, {
+              classNames(classes.buttonBackground, {
                 [classes.buttonUnactive] : !this.state.dashboard, 
                 [classes.buttonActive] : this.state.dashboard
               })} onClick={() => this.onClickHandler("dashboard")}
@@ -247,7 +247,7 @@ class Dashboard extends Component {
                   'TextFillActive' : this.state.dashboard
                 })}
               >
-              Click!
+              Dashboard
               </div>
             </Button>
           </div>

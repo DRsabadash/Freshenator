@@ -2,20 +2,21 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { Drawer, List, IconButton, ListItem, ListItemIcon, ListItemText, Divider, Typography } from '@material-ui/core';
+import { STORE_FEATURES } from '../constants/reducerTypes';
+import classNames from 'classnames';
+
+import { Drawer, IconButton, Divider } from '@material-ui/core';
+import DockPrimaryCell from './cells/primary/DockPrimaryCell';
+import DockSecondaryCell from './cells/secondary/DockSecondaryCell';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeftRounded';
 import ChevronRightIcon from '@material-ui/icons/ChevronRightRounded';
-import { editFeature } from '../actionCreators/FeatureActionCreators';
-import { STORE_FEATURES } from '../constants/reducerTypes';
 import loginIcon from '../assets/images/LoginIcon.png';
 import accountDetailsIcon from '../assets/images/AccountDetailsIcon.png';
 import navbarIcon from '../assets/images/NavbarIcon.png';
 import homePageIcon from '../assets/images/HomePageIcon.png';
 import adminPanelIcon from '../assets/images/AdminPanelIcon.png';
 import dashboardIcon from '../assets/images/DashboardIcon.png';
-
 
 const drawerWidth = 400;
 
@@ -106,7 +107,7 @@ const styles = theme => ({
   drawerPaper: {
     width: drawerWidth,
     display: 'inline-grid',
-    'grid-template-columns': '60px 100px 100px',
+    'grid-template-columns': '60px 340px 400px',
     paddingTop: '20px',
     paddingBottom: '20px',
     height: "90px",
@@ -120,7 +121,7 @@ const styles = theme => ({
   drawerPaperFull: {
     width: drawerWidth,
     display: 'inline-grid',
-    'grid-template-columns': '60px 100px 100px',
+    'grid-template-columns': '60px 340px 400px',
     paddingTop: '20px',
     paddingBottom: '40px',
     height: "200px",
@@ -181,16 +182,13 @@ class Dock extends Component {
     open: 'close'
   }
 
-  handleDrawerToggle = (openLevel) => {
-    this.setState({ open: openLevel });
-    
-    // TODO: On Toggle, if open set overlay DIV with no click through, no scroll to remaining window width/height with .6 opacity, also add a full drawer option
+  handleDrawerToggle = (open) => {
+    this.setState({ open });    
   };
 
   getIcon = (featureName) => {
     switch (featureName) {
       case 'login':
-        console.log('yep')
         return loginIcon;
 
       case 'accountDetails':
@@ -223,7 +221,7 @@ class Dock extends Component {
       activeFeatures.push(this.props.storeFeatures.data.find(item => item.feature === element))
     })
 
-    activeFeatures = activeFeatures.filter(element => element != undefined)
+    activeFeatures = activeFeatures.filter(element => element !== undefined)
 
     return (
       <div style={{display: "flex"}}>
@@ -262,7 +260,6 @@ class Dock extends Component {
           </div>
           <Divider className={classes.divider}/>
           <Divider className={classes.divider} style={{marginTop: '3px'}}/>
-
           {
             activeFeatures.map((element, index) => (
             console.log(this.getIcon(element.feature)),
@@ -278,12 +275,12 @@ class Dock extends Component {
                 {/* gridcell 1 */}
                 <div className={classes.drawerIcon} style={{backgroundImage: `url(${this.getIcon(element.feature)})`}}/>
                 {/* gridcell 2 */}
-                <div style={{display: 'inline-flex', overflow: 'hidden' }}>
-                  something
+                <div className="gridCell">
+                  <DockPrimaryCell feature={element.feature}/>
                 </div>
                 {/* gridcell 3 */}
-                <div style={{display: 'inline-flex', overflow: 'hidden' }}>
-               
+                <div className="gridCell">
+                  <DockSecondaryCell feature={element.feature}/>
                 </div>
               </div>
               <Divider className={classes.divider}/>
@@ -295,7 +292,6 @@ class Dock extends Component {
             </div>
             ))
           }
-
         </Drawer>
       </div>
     );

@@ -9,32 +9,33 @@ import NavbarSecondaryCell from './NavbarSecondaryCell';
 
 class DockSecondaryCell extends Component {
   render() {
+    const { changeHandler } = this.props;
     const Secondary = () => {
       switch (this.props.feature) {
 
         case 'login':
-          return <LoginSecondaryCell/>;
+          return <LoginSecondaryCell />;
 
         case 'accountDetails':
-          return <AccountSecondaryCell/>;
+          return <AccountSecondaryCell />;
 
         case 'navbar':
-          return <NavbarSecondaryCell/>;
+          return <NavbarSecondaryCell />;
 
         case 'homePage':
-          return <HomeSecondaryCell/>;
+          return <HomeSecondaryCell />;
 
         case 'adminPanel':
-          return <AdminSecondaryCell/>;
+          return <AdminSecondaryCell />;
 
         case 'dashboard':
-          return <DashboardSecondaryCell/>;
+          return <DashboardSecondaryCell />;
 
         default:
           return <div/>
       }
     }
-    
+
     return (
       <div>
         <Secondary/>

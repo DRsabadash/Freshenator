@@ -17,10 +17,23 @@ const featureReducer = (state = initialState, action) => {
         data: state.data.filter(element => element.feature !== action.payload)
       };
     case EDIT:
-      return {
-        ...state,
-        data: state.data[action.payload].settings.concat(...action.payload.settings)
-      };
+    const updatedData = {...state};
+      updatedData.data.map(element => {
+        if (element.feature === action.payload.feature) {
+          element.settings = { [action.payload.setting]: { value: action.payload.value } }
+
+          // element.settings.map(item => {
+          //   if (item.setting === action.payload.setting) {
+          //     item.value = action.payload.value
+          //   }
+          // })
+          // if(!element.settings.some(item => item.setting === action.payload.setting)) {
+          //   element.settings.push({setting: action.payload.setting, value: action.payload.value})
+          // }
+
+        }
+      })
+      return {...state}
     default:
       return state;
   }

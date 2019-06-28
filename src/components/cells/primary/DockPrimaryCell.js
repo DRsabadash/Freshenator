@@ -13,22 +13,22 @@ class DockPrimaryCell extends Component {
       switch (this.props.feature) {
 
         case 'login':
-          return <LoginPrimaryCell/>;
+          return <LoginPrimaryCell />;
 
         case 'accountDetails':
-          return <AccountPrimaryCell/>;
+          return <AccountPrimaryCell />;
 
         case 'navbar':
-          return <NavbarPrimaryCell/>;
+          return <NavbarPrimaryCell />;
 
         case 'homePage':
-          return <HomePrimaryCell/>;
+          return <HomePrimaryCell />;
 
         case 'adminPanel':
-          return <AdminPrimaryCell/>;
+          return <AdminPrimaryCell />;
 
         case 'dashboard':
-          return <DashboardPrimaryCell/>;
+          return <DashboardPrimaryCell />;
 
         default:
           return <div/>

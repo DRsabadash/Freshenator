@@ -4,8 +4,9 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { STORE_FEATURES } from '../constants/reducerTypes';
-import classNames from 'classnames';
+import { editFeature } from '../actionCreators/FeatureActionCreators';
 
+import classNames from 'classnames';
 import { Drawer, IconButton, Divider } from '@material-ui/core';
 import DockPrimaryCell from './cells/primary/DockPrimaryCell';
 import DockSecondaryCell from './cells/secondary/DockSecondaryCell';
@@ -179,7 +180,7 @@ const styles = theme => ({
 
 class Dock extends Component {
   state = {
-    open: 'close'
+    open: 'close',
   }
 
   handleDrawerToggle = (open) => {
@@ -262,8 +263,6 @@ class Dock extends Component {
           <Divider className={classes.divider} style={{marginTop: '3px'}}/>
           {
             activeFeatures.map((element, index) => (
-            console.log(this.getIcon(element.feature)),
-            console.log(loginIcon),
             <div style={{}}>
               <div className={
                 classNames(classes.drawerPaper, {
@@ -276,11 +275,11 @@ class Dock extends Component {
                 <div className={classes.drawerIcon} style={{backgroundImage: `url(${this.getIcon(element.feature)})`}}/>
                 {/* gridcell 2 */}
                 <div className="gridCell">
-                  <DockPrimaryCell feature={element.feature}/>
+                  <DockPrimaryCell feature={element.feature} />
                 </div>
                 {/* gridcell 3 */}
                 <div className="gridCell">
-                  <DockSecondaryCell feature={element.feature}/>
+                  <DockSecondaryCell feature={element.feature} />
                 </div>
               </div>
               <Divider className={classes.divider}/>

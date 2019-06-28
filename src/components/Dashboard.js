@@ -77,7 +77,7 @@ class Dashboard extends Component {
   onClickHandler = async (buttonId) => {
     await this.setState({[buttonId]: !this.state[buttonId]})
     if (this.state[buttonId]){
-      this.props.addFeature({feature: buttonId, settings: []})
+      this.props.addFeature({feature: buttonId, settings: {}})
     } else {
       this.props.removeFeature(buttonId)
     }

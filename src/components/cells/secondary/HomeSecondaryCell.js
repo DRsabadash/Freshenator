@@ -2,37 +2,40 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { editFeature } from '../../../actionCreators/FeatureActionCreators';
 import { STORE_FEATURES } from '../../../constants/reducerTypes';
-
-const styles = theme => ({
-
-})
+import makeGetFeatureSettings from '../../../selectors/featureSettingsSelector';
+import styles from '../../../styles/cellStyles';
 
 class HomeSecondaryCell extends Component {
-  state = {
-    
+
+  handleChange = (setting, value) => {
+    this.props.editFeature({feature: 'login', setting, value})
   }
   
   render() {
+    const { classes, featureSettings } = this.props;
     return (
       <div>
-        Hallo
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-  storeFeatures : state[STORE_FEATURES]
-})
+const makeMapStateToProps = () => {
+  const getFeatureSettings = makeGetFeatureSettings()
+  const mapStateToProps = (state) => ({
+    featureSettings: getFeatureSettings(state[STORE_FEATURES], 'login')
+  })
+  return mapStateToProps
+}
 
 const mapDispatchToProps = {
   editFeature
 }
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(makeMapStateToProps, mapDispatchToProps),
   withStyles(styles)
 )(HomeSecondaryCell);

@@ -8,7 +8,7 @@ import { STORE_FEATURES } from '../../../constants/reducerTypes';
 import makeGetFeatureSettings from '../../../selectors/featureSettingsSelector';
 import styles from '../../../styles/cellStyles';
 
-class DashboardPrimaryCell extends Component {
+class DashboardBottomCell extends Component {
 
   handleChange = (setting, value) => {
     this.props.editFeature({feature: 'login', setting, value})
@@ -38,4 +38,4 @@ const mapDispatchToProps = {
 export default compose(
   connect(makeMapStateToProps, mapDispatchToProps),
   withStyles(styles)
-)(DashboardPrimaryCell);
+)(DashboardBottomCell);

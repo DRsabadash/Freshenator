@@ -10,6 +10,7 @@ import classNames from 'classnames';
 import { Drawer, IconButton, Divider } from '@material-ui/core';
 import DockPrimaryCell from './cells/primary/DockPrimaryCell';
 import DockSecondaryCell from './cells/secondary/DockSecondaryCell';
+import DockBottomCell from './cells/bottom/DockBottomCell';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeftRounded';
 import ChevronRightIcon from '@material-ui/icons/ChevronRightRounded';
 import loginIcon from '../assets/images/LoginIcon.png';
@@ -109,23 +110,23 @@ const styles = theme => ({
     width: drawerWidth,
     display: 'inline-grid',
     'grid-template-columns': '60px 340px 400px',
+    'grid-template-rows': '90px 70px',
     paddingTop: '20px',
-    paddingBottom: '20px',
+    paddingBottom: '25px',
     height: "90px",
     alignItems: 'center',
     transition: theme.transitions.create('height', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-    }),
-    
+    }),    
   },
   drawerPaperFull: {
     width: drawerWidth,
     display: 'inline-grid',
     'grid-template-columns': '60px 340px 400px',
     paddingTop: '20px',
-    paddingBottom: '40px',
-    height: "200px",
+    paddingBottom: '25px',
+    height: "170px",
     alignItems: 'center',
     transition: theme.transitions.create('height', {
       easing: theme.transitions.easing.sharp,
@@ -248,11 +249,12 @@ class Dock extends Component {
               <ChevronRightIcon fontSize="large" style={{position: 'absolute', float: 'center'}}/>
             </IconButton>
             :this.state.open === 'open' 
-            ?<div><IconButton onClick={() => this.handleDrawerToggle('close')} className={classes.expanderButton}>
-              <ChevronLeftIcon fontSize="large" style={{position: 'absolute', float: 'center'}}/>
+            ?<div>
+              <IconButton onClick={() => this.handleDrawerToggle('close')} className={classes.expanderButton}>
+                <ChevronLeftIcon fontSize="large" style={{position: 'absolute', float: 'center'}}/>
               </IconButton>
               <IconButton onClick={() => this.handleDrawerToggle('openest')} className={classes.expanderButton}>
-              <ChevronRightIcon fontSize="large" style={{position: 'absolute', float: 'center'}}/>
+                <ChevronRightIcon fontSize="large" style={{position: 'absolute', float: 'center'}}/>
               </IconButton>
             </div> 
             :<IconButton onClick={() => this.handleDrawerToggle('open')} className={classes.expanderButton}>
@@ -281,16 +283,16 @@ class Dock extends Component {
                 <div className="gridCell">
                   <DockSecondaryCell feature={element.feature} />
                 </div>
+                {/* gricell bottom */}
+                <div className={classNames('gridCellBottom', {'gridCellBottom--active' : this.state.open === 'openest'})}>
+                  <DockBottomCell feature={element.feature} />
+                </div>
               </div>
               <Divider className={classes.divider}/>
-              { 
-                index % 2 === 1
-                ? <Divider className={classes.divider} style={{marginTop: '3px'}}/>
-                : <div/> 
-              }
             </div>
             ))
           }
+          <Divider className={classes.divider} style={{marginTop: '3px'}}/>
         </Drawer>
       </div>
     );

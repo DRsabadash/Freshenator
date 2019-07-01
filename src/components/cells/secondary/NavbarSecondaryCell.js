@@ -11,7 +11,7 @@ import styles from '../../../styles/cellStyles';
 class NavbarSecondaryCell extends Component {
 
   handleChange = (setting, value) => {
-    this.props.editFeature({feature: 'login', setting, value})
+    this.props.editFeature({feature: 'navbar', setting, value})
   }
   
   render() {
@@ -26,7 +26,7 @@ class NavbarSecondaryCell extends Component {
 const makeMapStateToProps = () => {
   const getFeatureSettings = makeGetFeatureSettings()
   const mapStateToProps = (state) => ({
-    featureSettings: getFeatureSettings(state[STORE_FEATURES], 'login')
+    featureSettings: getFeatureSettings(state[STORE_FEATURES], 'navbar')
   })
   return mapStateToProps
 }

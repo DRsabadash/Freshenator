@@ -26,7 +26,7 @@ class DashboardPrimaryCell extends Component {
 const makeMapStateToProps = () => {
   const getFeatureSettings = makeGetFeatureSettings()
   const mapStateToProps = (state) => ({
-    featureSettings: getFeatureSettings(state[STORE_FEATURES], 'login')
+    featureSettings: getFeatureSettings(state[STORE_FEATURES], 'dashboard')
   })
   return mapStateToProps
 }

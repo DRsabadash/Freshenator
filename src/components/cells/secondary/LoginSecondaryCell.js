@@ -10,6 +10,7 @@ import styles from '../../../styles/cellStyles';
 import checkboxUnchecked from '../../../assets/images/CheckboxUnchecked.png';
 import checkboxChecked from '../../../assets/images/CheckboxChecked.png';
 
+
 class LoginSecondaryCell extends Component {
 
   handleChange = (setting, value) => {

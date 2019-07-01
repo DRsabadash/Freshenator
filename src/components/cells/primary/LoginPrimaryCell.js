@@ -18,6 +18,7 @@ class LoginPrimaryCell extends Component {
   
   render() {
     const { classes, featureSettings } = this.props;
+    
     return (
       <div>
         <div className={classes.fullWidth}>

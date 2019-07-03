@@ -2,7 +2,7 @@
 
 #### About:
 
-This is a boilerplate-bootstrapper for creating electron applications, leveraging react, redux, and react-router.
+This is a boilerplate-bootstrapper for creating applications leveraging react, redux, and react-router.
 Everything is pre-configured to load off of a client server with live updating in development mode, or off of a static HTML file in production mode.
 
 #### Use case:

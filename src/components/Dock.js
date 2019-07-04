@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { STORE_FEATURES } from '../constants/reducerTypes';
 import { editFeature } from '../actionCreators/FeatureActionCreators';
-
 import classNames from 'classnames';
 import { Drawer, IconButton, Divider } from '@material-ui/core';
 import DockPrimaryCell from './cells/primary/DockPrimaryCell';

@@ -240,7 +240,7 @@ class Dock extends Component {
               [classes.drawerOpenFull]: this.state.open === 'openest'
             }),
           }}
-          open={this.state.open}
+          open={!!this.state.open}
         >
           <div className={classes.drawerHeader}>
             {this.state.open === 'close' 
@@ -264,7 +264,7 @@ class Dock extends Component {
           <Divider className={classes.divider} style={{marginTop: '3px'}}/>
           {
             activeFeatures.map((element, index) => (
-            <div style={{}}>
+            <div key={index}>
               <div className={
                 classNames(classes.drawerPaper, {
                   [classes.drawerPaper]: this.state.open === 'close',

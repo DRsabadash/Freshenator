@@ -43,7 +43,7 @@ class AccountBottomCell extends Component {
             ?
             <MuiThemeProvider theme={selectTheme}>
               <FormControlLabel
-                label="Side of screen drawer expands from"
+                label="Side of screen drawer expands from (default is Right)"
                 classes={{
                   root: classes.selectRoot,
                   label: classes.labelMargin}}

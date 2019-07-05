@@ -38,7 +38,7 @@ class NavbarPrimaryCell extends Component {
                     src={checkboxChecked} 
                   />
                 }
-                checked={featureSettings.editAccount ? featureSettings.editAccount.value : false}
+                checked={featureSettings.logo ? featureSettings.logo.value : false}
                 onChange={(event) => this.handleChange('logo', event.target.checked)} 
               />
             }
@@ -63,7 +63,7 @@ class NavbarPrimaryCell extends Component {
                     src={checkboxChecked} 
                   />
                 }
-                checked={featureSettings.editAccount ? featureSettings.editAccount.value : false}
+                checked={featureSettings.viewableFromHome ? featureSettings.viewableFromHome.value : false}
                 onChange={(event) => this.handleChange('viewableFromHome', event.target.checked)} 
               />
             }

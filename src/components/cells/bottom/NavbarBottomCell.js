@@ -8,18 +8,25 @@ import { STORE_FEATURES } from '../../../constants/reducerTypes';
 import classNames from 'classnames';
 import makeGetFeatureSettings from '../../../selectors/featureSettingsSelector';
 import styles from '../../../styles/cellStyles';
-import { element } from 'prop-types';
 
 class AdminBottomCell extends Component {
   state= {
     numButtons: 1,
     selectedButton: 1,
-    menuItems: []
+    selectedButtonName: '',
   }
 
   componentDidMount() {
     this.setState({
-      numButtons: this.props.featureSettings.numButtons ? this.props.featureSettings.numButtons.value : 1
+      numButtons: 
+        this.props.featureSettings.numButtons 
+          ? this.props.featureSettings.numButtons.value 
+          : 1
+      ,
+      selectedButtonName: 
+        this.props.featureSettings.buttonNames && this.props.featureSettings.buttonNames.value[this.state.selectedButton -1] 
+          ? this.props.featureSettings.buttonNames.value[this.state.selectedButton -1] 
+          : ''
     })
   }
 
@@ -30,19 +37,24 @@ class AdminBottomCell extends Component {
   }
 
   handleNameButtons = (value) => {
-    console.log(value)
-    // let values = [];
-    // if (this.props.featureSettings.buttonNames) {
-    //   values = this.props.featureSettings.buttonNames.value
-    // }
-    // values[this.state.selectedButton] = value
-    // this.props.editFeature({feature: 'navbar', setting: 'buttonNames', value: values})
-
+    let values = [];
+    if (this.props.featureSettings.buttonNames) {
+      values = this.props.featureSettings.buttonNames.value
+    }
+    values[this.state.selectedButton -1] = value
+    this.props.editFeature({feature: 'navbar', setting: 'buttonNames', value: values})
   }
+
+  handleSetButtonName = (value) => this.setState({ selectedButtonName: value})
 
   handleSetNumButtons = (value) => this.setState({ numButtons: value })
 
-  handleSelectButton = (value) => this.setState({selectedButton: value})
+  handleSelectButton = (value) => this.setState({
+    selectedButton: value,
+    selectedButtonName:  this.props.featureSettings.buttonNames && this.props.featureSettings.buttonNames.value[value -1] 
+      ? this.props.featureSettings.buttonNames.value[value -1]
+      : ''
+  })
   
   render() {
     const { classes, featureSettings } = this.props;
@@ -81,7 +93,7 @@ class AdminBottomCell extends Component {
           default: 
           menuClass= classes.menu1
       }
-      obj.push(<MenuItem value={iterator} className={menuClass}>{iterator}</MenuItem>)
+      obj.push(<MenuItem key={iterator} value={iterator} className={menuClass}>{iterator}</MenuItem>)
       iterator ++;
     }
     const primaryTheme = createMuiTheme({
@@ -111,7 +123,7 @@ class AdminBottomCell extends Component {
             }}
             variant="outlined"
             label='Number of buttons'
-            placeholder='1'
+            placeholder="1"
             value={this.state.numButtons}
             type="number"
             onChange={(event) => this.handleSetNumButtons(event.target.value)}
@@ -168,10 +180,11 @@ class AdminBottomCell extends Component {
               className:  classes.inputColor
             }}
             variant="outlined"
-            label='Link Name'
-            placeholder='Business Page'
-            value={featureSettings.buttonNames && featureSettings.buttonNames.value[0] ? featureSettings.buttonNames.value[0] : ''}
-            onChange={(event) => this.handleNameButtons('buttonNames', event.target.value)}
+            label="Link Name"
+            placeholder="Business Page"
+            value={this.state.selectedButtonName}
+            onChange={(event) => this.handleSetButtonName(event.target.value)}
+            onBlur={(event) => this.handleNameButtons(event.target.value)}
           />
         </MuiThemeProvider>
       </div>

@@ -38,7 +38,7 @@ class NavbarSecondaryCell extends Component {
                     src={checkboxChecked} 
                   />
                 }
-                checked={featureSettings.editAccount ? featureSettings.editAccount.value : false}
+                checked={featureSettings.loginButton ? featureSettings.loginButton.value : false}
                 onChange={(event) => this.handleChange('loginButton', event.target.checked)} 
               />
             }
@@ -63,7 +63,7 @@ class NavbarSecondaryCell extends Component {
                     src={checkboxChecked} 
                   />
                 }
-                checked={featureSettings.editAccount ? featureSettings.editAccount.value : false}
+                checked={featureSettings.username ? featureSettings.username.value : false}
                 onChange={(event) => this.handleChange('username', event.target.checked)} 
               />
             }
